@@ -1,5 +1,4 @@
 'use client'
-
 import { useEffect, useRef } from 'react'
 
 export default function HeroText() {
@@ -19,13 +18,13 @@ export default function HeroText() {
 
   return (
     <div ref={ref}>
-      <p style={{ fontSize: '0.75rem', color: '#a08c6e', marginBottom: '1.2rem' }}>
+      <p className="text-xs text-[#a08c6e] mb-5">
         مزون وِرا — تأسیس ۱۹۲۳
       </p>
-      <h1 style={{ fontFamily: "'Vazirmatn', 'Tahoma', Georgia, serif", fontSize: 'clamp(2.8rem, 6vw, 5.5rem)', fontWeight: 300, lineHeight: 1.15, color: '#e8e0d4' }}>
+      <h1 className="font-['Vazirmatn','Tahoma',Georgia,serif] text-[clamp(2.8rem,6vw,5.5rem)] font-light leading-[1.15] text-[#e8e0d4]">
         جایی که تجمل<br />به فرمی درمی‌یابد.
       </h1>
-      <p style={{ marginTop: '2rem', fontSize: '0.75rem', color: '#7a6e61' }}>
+      <p className="mt-8 text-xs text-[#7a6e61]">
         برای کاوش اسکرول کنید ↓
       </p>
     </div>

@@ -1,5 +1,4 @@
 'use client'
-
 import { useEffect, useRef } from 'react'
 
 interface SectionProps {
@@ -33,11 +32,20 @@ export default function Section({ id, label, title, body, align }: SectionProps)
   }, [])
 
   return (
-    <section id={id} style={{ height: '100vh', display: 'flex', alignItems: 'center', padding: '0 5vw' }}>
-      <div ref={ref} style={{ maxWidth: '380px', marginLeft: align === 'right' ? 'auto' : undefined, textAlign: align === 'right' ? 'right' : 'left' }}>
-        <p style={{ fontSize: '0.65rem', letterSpacing: '0.35em', color: '#a08c6e', textTransform: 'uppercase', marginBottom: '1.2rem' }}>{label}</p>
-        <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(1.8rem, 3vw, 2.8rem)', fontWeight: 300, lineHeight: 1.2, marginBottom: '1.2rem', color: '#e8e0d4' }}>{title}</h2>
-        <p style={{ fontSize: '0.9rem', color: '#7a6e61', lineHeight: 1.8 }}>{body}</p>
+    <section id={id} className="h-screen flex items-center px-[5vw]">
+      <div
+        ref={ref}
+        className={`max-w-[380px] ${align === 'right' ? 'ml-auto text-right' : 'text-left'}`}
+      >
+        <p className="text-[0.65rem] tracking-[0.35em] text-[#a08c6e] uppercase mb-5">
+          {label}
+        </p>
+        <h2 className="font-['Georgia',serif] text-[clamp(1.8rem,3vw,2.8rem)] font-light leading-[1.2] mb-5 text-[#e8e0d4]">
+          {title}
+        </h2>
+        <p className="text-sm text-[#7a6e61] leading-loose">
+          {body}
+        </p>
       </div>
     </section>
   )
