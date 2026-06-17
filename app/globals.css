@@ -16,6 +16,7 @@ body {
   background: #0f0d0a;
   color: #e8e0d4;
   overflow-x: hidden;
+  font-family: var(--font-sans), var(--font-vazirmatn), 'Tahoma', sans-serif;
 }
 
 canvas {

@@ -1,8 +1,11 @@
 'use client'
 import { useEffect, useRef } from 'react'
+import { useTheme, tokens } from '../store/scrollStore'
 
 export default function HeroText() {
   const ref = useRef<HTMLDivElement>(null)
+  const theme = useTheme((s) => s.theme)
+  const t = tokens[theme]
 
   useEffect(() => {
     const el = ref.current
@@ -18,13 +21,16 @@ export default function HeroText() {
 
   return (
     <div ref={ref}>
-      <p className="text-xs text-[#a08c6e] mb-5">
+      <p style={{ fontSize: '0.8rem', color: t.accent, marginBottom: '1.2rem' }}>
         مزون وِرا — تأسیس ۱۹۲۳
       </p>
-      <h1 className="font-['Vazirmatn','Tahoma',Georgia,serif] text-[clamp(2.8rem,6vw,5.5rem)] font-light leading-[1.15] text-[#e8e0d4]">
+      <h1
+        className="text-[clamp(2.8rem,6vw,5.5rem)] font-light leading-[1.15]"
+        style={{ fontFamily: 'var(--font-vazirmatn), var(--font-nazanin), serif', color: t.text }}
+      >
         جایی که تجمل<br />به فرمی درمی‌یابد.
       </h1>
-      <p className="mt-8 text-xs text-[#7a6e61]">
+      <p style={{ marginTop: '2rem', fontSize: '0.8rem', color: t.muted }}>
         برای کاوش اسکرول کنید ↓
       </p>
     </div>

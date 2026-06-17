@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef } from 'react'
+import { useTheme, tokens } from '../store/scrollStore'
 
 interface SectionProps {
   id: string
@@ -11,6 +12,8 @@ interface SectionProps {
 
 export default function Section({ id, label, title, body, align }: SectionProps) {
   const ref = useRef<HTMLDivElement>(null)
+  const theme = useTheme((s) => s.theme)
+  const t = tokens[theme]
 
   useEffect(() => {
     const el = ref.current
@@ -35,15 +38,25 @@ export default function Section({ id, label, title, body, align }: SectionProps)
     <section id={id} className="h-screen flex items-center px-[5vw]">
       <div
         ref={ref}
-        className={`max-w-[380px] ${align === 'right' ? 'ml-auto text-right' : 'text-left'}`}
+        style={{
+          maxWidth: '420px',
+          // In RTL, align="right" sits at the start (right) edge,
+          // align="left" at the end (left) edge.
+          marginLeft: align === 'left' ? 'auto' : undefined,
+          marginRight: align === 'right' ? 'auto' : undefined,
+          textAlign: align,
+        }}
       >
-        <p className="text-[0.65rem] tracking-[0.35em] text-[#a08c6e] uppercase mb-5">
+        <p style={{ fontSize: '0.75rem', color: t.accent, marginBottom: '1.2rem' }}>
           {label}
         </p>
-        <h2 className="font-['Georgia',serif] text-[clamp(1.8rem,3vw,2.8rem)] font-light leading-[1.2] mb-5 text-[#e8e0d4]">
+        <h2
+          className="text-[clamp(1.8rem,3vw,2.8rem)] font-light mb-5"
+          style={{ fontFamily: 'var(--font-vazirmatn), var(--font-nazanin), serif', lineHeight: 1.3, color: t.text }}
+        >
           {title}
         </h2>
-        <p className="text-sm text-[#7a6e61] leading-loose">
+        <p style={{ fontSize: '0.95rem', color: t.muted, lineHeight: 2 }}>
           {body}
         </p>
       </div>

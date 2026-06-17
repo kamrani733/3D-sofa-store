@@ -5,6 +5,19 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { useGLTF, Environment, ContactShadows } from '@react-three/drei'
 import * as THREE from 'three'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
+import { useTheme, tokens } from '../store/scrollStore'
+
+// Keeps the renderer clear color in sync with the active theme.
+function ThemeBackground() {
+  const theme = useTheme((s) => s.theme)
+  const { gl } = useThree()
+
+  useEffect(() => {
+    gl.setClearColor(new THREE.Color(tokens[theme].bg))
+  }, [gl, theme])
+
+  return null
+}
 
 function SofaModel({ progress }: { progress: React.MutableRefObject<number> }) {
   const gltf = useGLTF('/sofa.glb')
@@ -122,6 +135,8 @@ export default function SofaCanvas() {
       <directionalLight position={[4, 6, 4]} intensity={1.5} castShadow shadow-mapSize-width={1024} shadow-mapSize-height={1024} />
       <directionalLight position={[-4, 2, -2]} intensity={0.4} color="#c4a882" />
       <pointLight position={[0, 4, 2]} intensity={0.6} color="#f8e7c5" />
+
+      <ThemeBackground />
 
       <Suspense fallback={null}>
         <SofaModel progress={progress} />
