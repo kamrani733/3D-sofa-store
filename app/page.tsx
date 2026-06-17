@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import HeroText from '../components/HeroText'
 import Section from '../components/Section'
 import ThemeToggle from '../components/ThemeToggle'
+import ProductShowcase from '../components/ProductShowcase'
 import { useTheme, tokens } from '../store/scrollStore'
 
 const SofaCanvas = dynamic(() => import('../components/SofaCanvas'), { ssr: false })
@@ -84,7 +85,7 @@ export default function Home() {
             درخواست مشاوره
           </button>
         </section> */}
-        <pourduct />
+        <ProductShowcase />
       </div>
     </main>
   )
