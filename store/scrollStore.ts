@@ -1,14 +1,31 @@
 import { create } from "zustand";
 
-interface ScrollStore {
-  scrollY: number;
-  scrollProgress: number; // 0 to 1
-  setScroll: (y: number, total: number) => void;
+export type Theme = 'dark' | 'light';
+
+interface ThemeStore {
+  theme: Theme;
+  toggle: () => void;
+  setTheme: (t: Theme) => void;
 }
 
-export const useScrollStore = create<ScrollStore>((set) => ({
-  scrollY: 0,
-  scrollProgress: 0,
-  setScroll: (y, total) =>
-    set({ scrollY: y, scrollProgress: Math.min(y / total, 1) }),
+export const useTheme = create<ThemeStore>((set, get) => ({
+  theme: 'dark',
+  toggle: () => set({ theme: get().theme === 'dark' ? 'light' : 'dark' }),
+  setTheme: (t) => set({ theme: t }),
 }));
+
+// Color tokens per theme. Components pull from here via useTheme().
+export const tokens = {
+  dark: {
+    bg: '#0f0d0a',
+    text: '#e8e0d4',
+    muted: '#7a6e61',
+    accent: '#a08c6e',
+  },
+  light: {
+    bg: '#f4f0e8',
+    text: '#2a241d',
+    muted: '#6b5d4f',
+    accent: '#9a7b4f',
+  },
+} as const;
