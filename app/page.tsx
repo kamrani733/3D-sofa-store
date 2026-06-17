@@ -51,7 +51,7 @@ export default function Home() {
         />
 
         {/* CTA section */}
-        <section className="h-screen flex flex-col items-center justify-center gap-8">
+        {/* <section className="h-screen flex flex-col items-center justify-center gap-8">
           <p style={{ fontSize: '0.8rem', color: t.accent }}>
             سفارش دهید
           </p>
@@ -83,7 +83,8 @@ export default function Home() {
           >
             درخواست مشاوره
           </button>
-        </section>
+        </section> */}
+        <pourduct />
       </div>
     </main>
   )

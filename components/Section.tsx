@@ -35,28 +35,34 @@ export default function Section({ id, label, title, body, align }: SectionProps)
   }, [])
 
   return (
-    <section id={id} className="h-screen flex items-center px-[5vw]">
+    <section id={id} className="h-screen  text-right flex items-center px-[5vw]">
       <div
         ref={ref}
+        className="max-w-[420px]"
         style={{
-          maxWidth: '420px',
-          // In RTL, align="right" sits at the start (right) edge,
-          // align="left" at the end (left) edge.
           marginLeft: align === 'left' ? 'auto' : undefined,
           marginRight: align === 'right' ? 'auto' : undefined,
-          textAlign: align,
         }}
       >
-        <p style={{ fontSize: '0.75rem', color: t.accent, marginBottom: '1.2rem' }}>
+        <p 
+          className="text-[0.75rem] mb-[1.2rem]"
+          style={{ color: t.accent }}
+        >
           {label}
         </p>
         <h2
-          className="text-[clamp(1.8rem,3vw,2.8rem)] font-light mb-5"
-          style={{ fontFamily: 'var(--font-vazirmatn), var(--font-nazanin), serif', lineHeight: 1.3, color: t.text }}
+          className="text-[clamp(1.8rem,3vw,2.8rem)] font-light mb-5 leading-[1.3]"
+          style={{ 
+            fontFamily: 'var(--font-vazirmatn), var(--font-nazanin), serif',
+            color: t.text 
+          }}
         >
           {title}
         </h2>
-        <p style={{ fontSize: '0.95rem', color: t.muted, lineHeight: 2 }}>
+        <p 
+          className="text-[0.95rem] leading-[2]"
+          style={{ color: t.muted }}
+        >
           {body}
         </p>
       </div>
