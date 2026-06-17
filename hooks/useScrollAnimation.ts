@@ -7,29 +7,12 @@ export function useScrollAnimation() {
 
   useEffect(() => {
     const update = () => {
-      // Use a more reliable method to get the total scrollable height
-      const docHeight = document.documentElement.scrollHeight
-      const bodyHeight = document.body.scrollHeight
-      const scrollableHeight = Math.max(docHeight, bodyHeight) - window.innerHeight
-      
-      if (scrollableHeight > 0) {
-        progress.current = Math.min(window.scrollY / scrollableHeight, 1)
-      } else {
-        progress.current = 0
-      }
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+      progress.current = maxScroll > 0 ? Math.min(Math.max(window.scrollY / maxScroll, 0), 1) : 0
     }
-    
-    // Call once to set initial value
-    setTimeout(update, 0)
-    
+    update()
     window.addEventListener('scroll', update, { passive: true })
-    // Also listen for resize events in case content height changes
-    window.addEventListener('resize', update, { passive: true })
-    
-    return () => {
-      window.removeEventListener('scroll', update)
-      window.removeEventListener('resize', update)
-    }
+    return () => window.removeEventListener('scroll', update)
   }, [])
 
   return progress
