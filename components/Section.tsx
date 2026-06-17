@@ -38,7 +38,7 @@ export default function Section({ id, label, title, body, align }: SectionProps)
     <section id={id} className="h-screen  text-right flex items-center px-[5vw]">
       <div
         ref={ref}
-        className="max-w-[420px]"
+        className="max-w-[420px] pointer-events-auto"
         style={{
           marginLeft: align === 'left' ? 'auto' : undefined,
           marginRight: align === 'right' ? 'auto' : undefined,
