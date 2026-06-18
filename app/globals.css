@@ -13,6 +13,27 @@ body {
   font-family: var(--font-sans), var(--font-vazirmatn), "Tahoma", sans-serif;
 }
 
+.hero-text-root {
+  color: var(--hero-text);
+}
+
+.hero-text-accent {
+  color: var(--hero-accent);
+}
+
+.hero-text-muted {
+  color: var(--hero-muted);
+}
+
+.hero-title {
+  color: inherit;
+  font-family: var(--font-vazirmatn), var(--font-nazanin), serif;
+}
+
+.hero-title-nastaliq {
+  font-family: var(--font-nastaliq), var(--font-vazirmatn), serif;
+}
+
 canvas {
   display: block;
 }

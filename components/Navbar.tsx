@@ -59,7 +59,7 @@ export default function Navbar() {
             href="https://tolica.ir/"
             target="_blank"
             rel="noreferrer"
-            className="shrink-0 relative h-9 w-24"
+            className="shrink-0 relative h-22 w-34"
           >
             <Image
               src="/logo-white.png"

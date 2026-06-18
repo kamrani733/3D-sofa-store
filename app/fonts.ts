@@ -20,3 +20,9 @@ export const bnazanin = localFont({
   display: 'swap',
   variable: '--font-nazanin',
 })
+
+export const iranNastaliq = localFont({
+  src: '../public/fonts/IranNastaliq.ttf',
+  display: 'swap',
+  variable: '--font-nastaliq',
+})

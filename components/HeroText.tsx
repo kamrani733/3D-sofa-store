@@ -20,25 +20,28 @@ export default function HeroText() {
   }, []);
 
   return (
-    <div ref={ref}>
-      <p className="text-[0.8rem] mb-[1.2rem]" style={{ color: t.accent }}>
-        مزون تولیکا — تأسیس ۱۳۸۹
+    <div
+      ref={ref}
+      className="hero-text-root"
+      style={{
+        '--hero-text': t.text,
+        '--hero-accent': t.accent,
+        '--hero-muted': t.muted,
+      } as React.CSSProperties}
+    >
+      <p className="text-[0.8rem] mb-[1.2rem] hero-text-accent">
+        تولیکا — مبلمان ایرانی مدرن
       </p>
-      <h1
-        className=" font-light leading-[1.15]"
-        style={{
-          fontFamily: "var(--font-vazirmatn), var(--font-nazanin), serif",
-          color: t.text,
-        }}
-      >
-        <span className="text-[clamp(2.8rem,6vw,5.5rem)]">جایی که هنر</span>
-        <br />
-        <span className="text-[clamp(0.8rem,4vw,4.5rem)]">
-          دست به کار میشود
+      <h1 className="hero-title font-light leading-[1.15]">
+        <span className="hero-title-nastaliq text-[clamp(2.8rem,6vw,5.5rem)]">
+          خانه‌ای  زیبایی که
+        </span>
+        <span className="hero-title-nastaliq text-[clamp(2.8rem,6vw,5.5rem)]">
+          با طراحی ایرانی جان می‌گیرد
         </span>
       </h1>
-      <p className="mt-8 text-[0.8rem]" style={{ color: t.muted }}>
-        برای کاوش اسکرول کنید ↓
+      <p className="mt-8 text-[0.8rem] hero-text-muted">
+        برای دیدن مجموعه، اسکرول کنید ↓
       </p>
     </div>
   );

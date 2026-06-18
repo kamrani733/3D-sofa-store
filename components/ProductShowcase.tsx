@@ -57,10 +57,9 @@ export default function ProductShowcase() {
             ۰۴ — پیشنهادهای ویژه
           </p>
           <h2
-            className="text-[clamp(1.8rem,4vw,3rem)] font-light mb-4 leading-[1.2]"
+            className="text-[clamp(4.8rem,4vw,3rem)] hero-title-nastaliq font-light mb-4 leading-[1.2]"
             style={{
-              fontFamily: 'var(--font-vazirmatn), var(--font-nazanin), serif',
-              color: t.text,
+               color: t.text,
             }}
           >
             مجموعه مبل‌های اختصاصی

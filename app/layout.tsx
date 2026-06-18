@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { vazirmatn, iranianSans, bnazanin } from "./fonts";
-import ThemeToggle from "@/components/ThemeToggle";
+import { vazirmatn, iranianSans, bnazanin, iranNastaliq } from "./fonts";
 import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
@@ -18,11 +17,10 @@ export default function RootLayout({
     <html
       lang="fa"
       dir="rtl"
-      className={`${vazirmatn.variable} ${iranianSans.variable} ${bnazanin.variable}`}
+      className={`${vazirmatn.variable} ${iranianSans.variable} ${bnazanin.variable} ${iranNastaliq.variable}`}
     >
       <body className="">
         <Navbar />
-
         {children}
       </body>
     </html>

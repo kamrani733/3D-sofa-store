@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import HeroText from "../components/HeroText";
 import Section from "../components/Section";
 import ProductShowcase from "../components/ProductShowcase";
+import CategoryGallery from "../components/CategoryGallery";
 import { useTheme, tokens } from "../store/scrollStore";
 import Footer from "@/components/Footer";
 
@@ -35,11 +36,10 @@ export default function Home() {
           <HeroText />
         </section>
 
-        {/* Content sections */}
         <Section
           id="craftsmanship"
           label="۰۱ — هنر صنعت داخلی"
-          title="مبل ایرانی با کیفیت جهانی"
+          title="هنر ایرانی و مدرنیته جهانی"
           body="هر محصول در کارگاه‌های ایران طراحی و ساخته می‌شود تا هم راحتی روزمره و هم اصالت سنتی را در فضای خانه شما به‌همراه داشته باشد."
           align="left"
         />
@@ -59,6 +59,8 @@ export default function Home() {
         />
 
         <ProductShowcase />
+        <CategoryGallery />
+
         <Footer />
       </div>
     </div>
