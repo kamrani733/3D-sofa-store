@@ -46,7 +46,7 @@ export default function ProductShowcase() {
   return (
     <section
       id="products"
-      className="min-h-screen py-[5rem] md:py-[6rem] px-[5vw]"
+      className="py-[4rem] md:py-[5rem] lg:py-[6rem] px-[5vw]"
       style={{ background: t.bg }}
     >
       {/* Centered, width-capped container so cards breathe on large screens. */}
@@ -57,9 +57,9 @@ export default function ProductShowcase() {
             ۰۴ — پیشنهادهای ویژه
           </p>
           <h2
-            className="text-[clamp(4.8rem,4vw,3rem)] hero-title-nastaliq font-light mb-4 leading-[1.2]"
+            className="text-[clamp(2.8rem,4vw,4.8rem)] hero-title-nastaliq font-light mb-4 leading-[1.2]"
             style={{
-               color: t.text,
+              color: t.text,
             }}
           >
             مجموعه مبل‌های اختصاصی
@@ -75,11 +75,11 @@ export default function ProductShowcase() {
         </div>
 
         {/* Responsive grid: 1 col mobile, 2 col tablet, 3 equal cols desktop. */}
-        <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-[1rem] lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
           {products.map((product) => (
             <article
               key={product.name}
-              className="group flex rounded-[1rem] p-[1rem] gap-[1rem] flex-col overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+              className="group flex rounded-[1rem] p-4 gap-4 flex-col overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
               style={{ background: cardBg, border: `1px solid ${cardBorder}` }}
             >
               {/* Image */}
@@ -93,7 +93,7 @@ export default function ProductShowcase() {
                 />
               </div>
 
-              <div className="flex flex-col p-5 text-right">
+              <div className="flex flex-col p-4 text-right">
                 <p className="text-[0.75rem] font-medium mb-2" style={{ color: t.accent }}>
                   {product.style}
                 </p>
@@ -108,7 +108,7 @@ export default function ProductShowcase() {
                 </p>
 
                 <div
-                  className="mt-auto p-[1rem] border-t text-left flex justify-end"
+                  className="mt-auto p-4 border-t text-right flex justify-end"
                   style={{ borderColor: divider }}
                 >
                   <span className="text-base font-semibold" style={{ color: t.accent }}>
