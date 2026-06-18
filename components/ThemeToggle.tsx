@@ -9,7 +9,10 @@ export default function ThemeToggle() {
   const toggle = useTheme((s) => s.toggle)
 
   // Avoid hydration mismatch: render a stable placeholder until mounted.
-  useEffect(() => setMounted(true), [])
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setMounted(true))
+    return () => cancelAnimationFrame(raf)
+  }, [])
 
   const t = tokens[theme]
 

@@ -22,7 +22,7 @@ export default function HeroText() {
   return (
     <div ref={ref}>
       <p className="text-[0.8rem] mb-[1.2rem]" style={{ color: t.accent }}>
-        مزون وِرا — تأسیس ۱۳۸۹
+        مزون تولیکا — تأسیس ۱۳۸۹
       </p>
       <h1
         className=" font-light leading-[1.15]"

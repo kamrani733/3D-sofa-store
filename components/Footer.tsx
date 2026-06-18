@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useTheme, tokens } from "../store/scrollStore";
 
 export default function Footer() {
@@ -17,10 +18,12 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-4" dir="rtl">
         <div className="flex flex-col gap-4">
           <a href="https://tolica.ir/" target="_blank" rel="noreferrer">
-            <img
-              src="https://tolica.ir/ztheme_front/img/logo-white.png"
+            <Image
+              src="/logo-black.png"
               alt="Tolica"
-              className="h-12"
+              width={120}
+              height={48}
+              className="h-12 w-auto"
             />
           </a>
           <p className="text-sm">تلفن : 05135412700</p>
