@@ -1,22 +1,28 @@
-'use client'
-import dynamic from 'next/dynamic'
-import HeroText from '../components/HeroText'
-import Section from '../components/Section'
-import ThemeToggle from '../components/ThemeToggle'
-import ProductShowcase from '../components/ProductShowcase'
-import Footer from '../components/Footer'
-import { useTheme, tokens } from '../store/scrollStore'
+"use client";
+import dynamic from "next/dynamic";
+import HeroText from "../components/HeroText";
+import Section from "../components/Section";
+import ProductShowcase from "../components/ProductShowcase";
+import { useTheme, tokens } from "../store/scrollStore";
+import Footer from "@/components/Footer";
 
-const SofaCanvas = dynamic(() => import('../components/SofaCanvas'), { ssr: false })
+const SofaCanvas = dynamic(() => import("../components/SofaCanvas"), {
+  ssr: false,
+});
 
 export default function Home() {
-  const theme = useTheme((s) => s.theme)
-  const t = tokens[theme]
+  const theme = useTheme((s) => s.theme);
+  const t = tokens[theme];
 
   return (
-    <main style={{ background: t.bg, color: t.text, transition: 'background 0.4s ease, color 0.4s ease' }}>
-      <ThemeToggle />
-
+    <div
+      className="p-10"
+      style={{
+        background: t.bg,
+        color: t.text,
+        transition: "background 0.4s ease, color 0.4s ease",
+      }}
+    >
       {/* Fixed 3D canvas background */}
       <div className="fixed inset-0 z-0 w-screen h-screen">
         <SofaCanvas />
@@ -25,7 +31,7 @@ export default function Home() {
       {/* Scrollable content */}
       <div className="relative z-10">
         {/* Hero */}
-        <section className="h-screen flex flex-col justify-end px-[5vw] pb-[8vh]">
+        <section className="h-screen flex flex-col justify-end  pb-[8vh]">
           <HeroText />
         </section>
 
@@ -52,43 +58,9 @@ export default function Home() {
           align="left"
         />
 
-        {/* CTA section */}
-        {/* <section className="h-screen flex flex-col items-center justify-center gap-8">
-          <p style={{ fontSize: '0.8rem', color: t.accent }}>
-            سفارش دهید
-          </p>
-          <h2
-            className="text-[clamp(2.5rem,5vw,4rem)] font-light"
-            style={{ fontFamily: 'var(--font-vazirmatn), var(--font-nazanin), serif', color: t.text }}
-          >
-            از ۴٬۲۰۰ یورو
-          </h2>
-          <button
-            style={{
-              border: `1px solid ${t.accent}`,
-              color: t.accent,
-              background: 'transparent',
-              padding: '1rem 2.5rem',
-              fontSize: '0.8rem',
-              cursor: 'pointer',
-              transition: 'all 0.4s ease',
-              fontFamily: 'inherit',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = t.accent
-              e.currentTarget.style.color = t.bg
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'transparent'
-              e.currentTarget.style.color = t.accent
-            }}
-          >
-            درخواست مشاوره
-          </button>
-        </section> */}
         <ProductShowcase />
         <Footer />
       </div>
-    </main>
-  )
+    </div>
+  );
 }
