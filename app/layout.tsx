@@ -4,8 +4,8 @@ import { yekanBakh } from "./fonts";
 import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "مزون وِرا — مبلمان لوکس",
-  description: "مبل‌های لوکس دست‌ساز از سال ۱۹۲۳",
+  title: "مبل تولیکا مبلمان لوکس",
+  description: "مبل‌های لوکس دست‌ساز از سال ۱۳۹۸",
 };
 
 export default function RootLayout({
