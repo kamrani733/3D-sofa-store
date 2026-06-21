@@ -28,6 +28,14 @@ export default function Navbar() {
     };
   }, []);
 
+  // Lock body scroll while the mobile drawer is open.
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
   const isDark = theme === "dark";
 
   const cssVars = {
@@ -47,11 +55,18 @@ export default function Navbar() {
               ? "rgba(15,13,10,0.92)"
               : "rgba(248,244,238,0.92)"
             : "transparent",
-          borderBottomColor: scrolled ? t.accent : "transparent",
+          borderBottom: scrolled
+            ? `1px solid ${t.accent}30`
+            : "1px solid transparent",
           backdropFilter: scrolled ? "blur(12px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
+          boxShadow: scrolled
+            ? isDark
+              ? "0 8px 30px rgba(0,0,0,0.35)"
+              : "0 8px 30px rgba(0,0,0,0.06)"
+            : "none",
         }}
-        className="fixed top-0 right-0 left-0 z-[100] border-b transition-all duration-400"
+        className="fixed top-0 right-0 left-0 z-[100] transition-all duration-400"
       >
         <div className="max-w-[1400px] mx-auto px-[5vw] h-16 flex items-center justify-between">
           {/* Logo */}
@@ -88,20 +103,31 @@ export default function Navbar() {
               >
                 <a
                   href={item.href}
-                  className="flex items-center h-16 px-4 text-xs tracking-wide whitespace-nowrap no-underline transition-colors duration-200 border-b-2"
-                  style={{
-                    color: t.text,
-                    borderBottomColor:
-                      activeMenu === i ? t.accent : "transparent",
-                  }}
+                  className={`nav-item flex items-center h-16 px-4 text-xs tracking-wide whitespace-nowrap no-underline transition-colors duration-200 ${
+                    activeMenu === i ? "is-active" : ""
+                  }`}
+                  style={{ color: t.text }}
                 >
                   {item.label}
+                  {item.children.length > 0 && (
+                    <span
+                      className="inline-block mr-1 text-[0.6rem] transition-transform duration-200"
+                      style={{
+                        color: t.accent,
+                        transform:
+                          activeMenu === i ? "rotate(180deg)" : "none",
+                      }}
+                    >
+                      ▾
+                    </span>
+                  )}
+                  <span className="nav-underline" />
                 </a>
 
                 {/* Mega dropdown */}
                 {item.children.length > 0 && activeMenu === i && (
                   <div
-                    className="absolute top-16 right-0 min-w-[520px] p-6 shadow-2xl border"
+                    className="nav-dropdown absolute top-16 right-0 min-w-[520px] p-6 shadow-2xl border rounded-[0.75rem]"
                     style={{
                       background: isDark
                         ? "rgba(20,18,14,0.98)"
@@ -110,7 +136,10 @@ export default function Navbar() {
                       WebkitBackdropFilter: "blur(16px)",
                       borderColor: `${t.accent}30`,
                       display: "grid",
-                      gridTemplateColumns: `repeat(${Math.min(item.children.length, 3)}, 1fr)`,
+                      gridTemplateColumns: `repeat(${Math.min(
+                        item.children.length,
+                        3
+                      )}, 1fr)`,
                       gap: "1.5rem",
                     }}
                   >
@@ -118,7 +147,7 @@ export default function Navbar() {
                       <div key={j}>
                         <a
                           href={col.href}
-                          className="block text-[0.7rem] tracking-widest font-semibold no-underline mb-3"
+                          className="block text-[0.7rem] tracking-widest font-semibold no-underline mb-3 transition-opacity duration-150 hover:opacity-100"
                           style={{ color: t.accent }}
                         >
                           {col.label}
@@ -128,7 +157,7 @@ export default function Navbar() {
                             <li key={k} className="mb-1.5">
                               <a
                                 href={s.href}
-                                className="text-xs no-underline opacity-75 hover:opacity-100 transition-opacity duration-150"
+                                className="mega-link block text-xs no-underline opacity-75"
                                 style={{ color: t.text }}
                               >
                                 {s.label}
@@ -145,11 +174,11 @@ export default function Navbar() {
           </ul>
 
           {/* Right icons */}
-          <div className="flex items-center gap-5 shrink-0">
+          <div className="flex items-center gap-1 shrink-0">
             {/* Search */}
             <a
               href="/fa/product/search"
-              className="leading-none transition-opacity hover:opacity-70"
+              className="nav-icon transition-opacity"
               style={{ color: t.text }}
               aria-label="جستجو"
             >
@@ -161,7 +190,7 @@ export default function Navbar() {
               href="https://tolica.ir/fa/login"
               target="_blank"
               rel="noreferrer"
-              className="leading-none transition-opacity hover:opacity-70"
+              className="nav-icon transition-opacity"
               style={{ color: t.text }}
               aria-label="ورود"
             >
@@ -173,7 +202,7 @@ export default function Navbar() {
               href="https://tolica.ir/fa/invoice/cart"
               target="_blank"
               rel="noreferrer"
-              className="leading-none transition-opacity hover:opacity-70"
+              className="nav-icon transition-opacity"
               style={{ color: t.text }}
               aria-label="سبد خرید"
             >
@@ -190,11 +219,8 @@ export default function Navbar() {
               aria-label={
                 theme === "dark" ? "تغییر به حالت روشن" : "تغییر به حالت تاریک"
               }
-              className="flex items-center leading-none rounded-full px-2.5 py-1.5 text-sm border cursor-pointer bg-transparent transition-opacity hover:opacity-70"
-              style={{
-                color: t.text,
-                borderColor: `${t.accent}60`,
-              }}
+              className="nav-icon flex items-center cursor-pointer bg-transparent"
+              style={{ color: t.text }}
             >
               {mounted ? (
                 theme === "dark" ? (
@@ -210,7 +236,7 @@ export default function Navbar() {
             {/* Hamburger — mobile only */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="flex md:hidden bg-transparent border-none cursor-pointer leading-none p-0"
+              className="nav-icon flex md:hidden bg-transparent border-none cursor-pointer"
               style={{ color: t.text }}
               aria-label="منو"
             >
@@ -220,25 +246,36 @@ export default function Navbar() {
         </div>
       </nav>
 
+      {/* Mobile backdrop */}
+      {mobileOpen && (
+        <div
+          className="mobile-backdrop fixed inset-0 z-[190]"
+          style={{ background: "rgba(0,0,0,0.5)" }}
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+
       {/* Mobile drawer */}
       {mobileOpen && (
         <div
           dir="rtl"
-          className="fixed inset-0 z-[200] overflow-y-auto pt-20 px-[5vw] pb-8"
+          className="mobile-drawer fixed top-0 right-0 bottom-0 z-[200] w-[88vw] max-w-[420px] overflow-y-auto pt-20 px-[6vw] pb-10"
           style={{
             background: isDark
-              ? "rgba(15,13,10,0.98)"
-              : "rgba(248,244,238,0.98)",
+              ? "rgba(15,13,10,0.99)"
+              : "rgba(248,244,238,0.99)",
             backdropFilter: "blur(16px)",
             WebkitBackdropFilter: "blur(16px)",
+            borderLeft: `1px solid ${t.accent}30`,
           }}
         >
           <button
             onClick={() => setMobileOpen(false)}
-            className="absolute top-5 left-[5vw] bg-transparent border-none cursor-pointer text-2xl leading-none"
-            style={{ color: t.text }}
+            className="absolute top-5 left-[5vw] flex items-center justify-center w-9 h-9 rounded-full bg-transparent border-none cursor-pointer transition-colors hover:bg-black/5"
+            style={{ color: t.text, border: `1px solid ${t.accent}40` }}
+            aria-label="بستن منو"
           >
-            ✕
+            <X size={18} strokeWidth={1.5} />
           </button>
 
           <ul className="list-none m-0 p-0">
@@ -246,7 +283,10 @@ export default function Navbar() {
               <li
                 key={i}
                 className="border-b"
-                style={{ borderColor: `${t.accent}20` }}
+                style={{
+                  borderColor: `${t.accent}20`,
+                  animation: `mobile-item-in 0.4s ease ${i * 60}ms both`,
+                }}
               >
                 <button
                   onClick={() =>
@@ -255,7 +295,7 @@ export default function Navbar() {
                   className="w-full bg-transparent border-none cursor-pointer flex justify-between items-center py-4 text-sm text-right"
                   style={{ color: t.text }}
                 >
-                  <span>{item.label}</span>
+                  <span className="font-light">{item.label}</span>
                   {item.children.length > 0 && (
                     <span
                       className="text-[0.7rem] transition-transform duration-200"

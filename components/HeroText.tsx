@@ -33,10 +33,9 @@ export default function HeroText() {
         تولیکا — مبلمان ایرانی مدرن
       </p>
       <h1 className="hero-title font-light leading-[1.15]">
-        <span className="hero-title-nastaliq text-[clamp(2.8rem,6vw,5.5rem)]">
+        <span className="text-[clamp(0.8rem,6vw,3.5rem)]">
           خانه‌ای  زیبایی که
-        </span>
-        <span className="hero-title-nastaliq text-[clamp(2.8rem,6vw,5.5rem)]">
+   
           با طراحی ایرانی جان می‌گیرد
         </span>
       </h1>

@@ -10,7 +10,7 @@ body {
   background: #0f0d0a;
   color: #e8e0d4;
   overflow-x: hidden;
-  font-family: var(--font-sans), var(--font-vazirmatn), "Tahoma", sans-serif;
+  font-family: var(--font-yekanbakh), "Tahoma", sans-serif;
 }
 
 .hero-text-root {
@@ -27,13 +27,123 @@ body {
 
 .hero-title {
   color: inherit;
-  font-family: var(--font-vazirmatn), var(--font-nazanin), serif;
+  font-family: var(--font-yekanbakh), serif;
 }
 
 .hero-title-nastaliq {
-  font-family: var(--font-nastaliq), var(--font-vazirmatn), serif;
+  font-family: var(--font-yekanbakh), serif;
 }
 
 canvas {
   display: block;
+}
+
+/* ===== Navbar animations ===== */
+
+@keyframes nav-dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.nav-dropdown {
+  animation: nav-dropdown-in 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top right;
+}
+
+/* Animated underline that grows from the inline-start edge on hover. */
+.nav-underline {
+  position: absolute;
+  bottom: -1px;
+  inset-inline-start: 1rem;
+  inset-inline-end: 1rem;
+  height: 1.5px;
+  background: var(--nav-accent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-item:hover .nav-underline,
+.nav-item.is-active .nav-underline {
+  transform: scaleX(1);
+}
+
+/* Mega-dropdown link hover rail. */
+.mega-link {
+  position: relative;
+  transition: color 0.2s ease, padding-inline-start 0.2s ease;
+}
+.mega-link::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 50%;
+  width: 0;
+  height: 1px;
+  background: var(--nav-accent);
+  transition: width 0.25s ease;
+  transform: translateY(-50%);
+}
+.mega-link:hover {
+  padding-inline-start: 0.6rem;
+  opacity: 1 !important;
+}
+.mega-link:hover::before {
+  width: 0.4rem;
+}
+
+/* Circular icon button hover. */
+.nav-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.nav-icon:hover {
+  background: rgba(160, 140, 110, 0.14);
+}
+
+/* Mobile drawer slide-in (RTL: slides from the right edge). */
+@keyframes mobile-drawer-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.mobile-drawer {
+  animation: mobile-drawer-in 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes mobile-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.mobile-backdrop {
+  animation: mobile-backdrop-in 0.3s ease;
+}
+
+@keyframes mobile-item-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

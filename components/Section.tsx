@@ -51,7 +51,7 @@ export default function Section({ id, label, title, body, align }: SectionProps)
           {label}
         </p>
         <h2
-          className="text-[clamp(4.8rem,3vw,2.8rem)] hero-title-nastaliq font-light mb-5 leading-[1.3]"
+          className="text-[clamp(1.8rem,3vw,2.8rem)] hero-title-nastaliq font-light mb-5 leading-[1.3]"
           style={{ 
             color: t.text 
           }}
